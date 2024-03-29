@@ -315,6 +315,7 @@
 // } from '@element-plus/icons'
 import axios from 'axios'
 
+
 export default {
   data() {
     return {
@@ -842,6 +843,7 @@ export default {
 </style>
 
 <style scoped>
+@import '../theme/index.css';
 * {
   box-sizing: border-box;
   margin: 0;
