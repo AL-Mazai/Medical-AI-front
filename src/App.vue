@@ -1,5 +1,4 @@
 <template>
-
   <div id="app">
     <app-header></app-header>
     <app-content></app-content>
@@ -8,28 +7,19 @@
 </template>
 
 <script>
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Content from './components/Content'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+import Content from './components/Content.vue'
 export default {
-  name: "肿瘤辅助诊断系统",
+  name: '肿瘤辅助诊断系统',
   data() {
-    return {
-
-    }
+    return {}
   },
-  components:{
-    "app-header":Header,
-    "app-footer":Footer,
-    "app-content":Content
+  components: {
+    'app-header': Header,
+    'app-footer': Footer,
+    'app-content': Content,
   },
-  methods: {
-
-  },
-
-};
+  methods: {},
+}
 </script>
-
-<style scope="this api replaced by slot-scope in 2.5.0+">
-
-</style>

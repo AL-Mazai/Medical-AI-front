@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CTAI_web.iml" filepath="$PROJECT_DIR$/.idea/CTAI_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MedicalAiFront.iml" filepath="$PROJECT_DIR$/.idea/MedicalAiFront.iml" />
     </modules>
   </component>
 </project>

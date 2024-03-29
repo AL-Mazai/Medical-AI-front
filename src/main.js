@@ -1,35 +1,48 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import VueRouter from 'vue-router'
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import App from './App.vue'
 import axios from 'axios'
-import Element from 'element-ui'
-import echarts from "echarts";
-
-Vue.prototype.$echarts = echarts;
-import '../node_modules/element-ui/lib/theme-chalk/index.css'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import '../src/assets/style.css'
 import './theme/index.css'
+import * as echarts from 'echarts';
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-Vue.use(Element)
-Vue.config.productionTip = false
-Vue.use(VueRouter)
-Vue.prototype.$http = axios
+const app = createApp(App)
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
-const router = new VueRouter({
-    routes: [
-        {path: "/App", component: App, meta: {title: "肿瘤辅助诊断系统"},},
-    ],
-    mode: "history"
+
+
+// 注册全局变量 $echarts
+app.config.globalProperties.$echarts = echarts
+
+// 注册全局变量 $http
+app.config.globalProperties.$http = axios
+
+// 创建路由
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    { path: '/App', component: App, meta: { title: '肿瘤辅助诊断系统' } },
+  ]
 })
 
-// // 全局注册组件
-Vue.component("App", App);
+// 使用 ElementPlus
+app.use(ElementPlus)
 
-/* eslint-disable no-new */
-new Vue({
-    el: '#app',
-    router,
-    render: h => h(App)
-})
+// 注册全局组件
+app.component('App', App)
+
+// 自定义全局方法 routerAppend
+app.config.globalProperties.routerAppend = (path, pathToAppend) => {
+  return path + (path.endsWith('/') ? '' : '/') + pathToAppend
+}
+
+// 使用路由
+app.use(router)
+
+// 挂载应用
+app.mount('#app')
