@@ -15,15 +15,17 @@ import {
     <el-col  class="col">
       <el-menu
           class="el-menu-vertical-demo"
-          style="--el-menu-text-color: white;--el-menu-active-color: yellow"
-          background-color="yellow"
-          active-text-color="pink"
+          text-color="white"
+          background-color="white"
+          active-text-color="white"
+          router
+
       >
         <div style="padding:  20px ;display: flex;justify-content: center;align-items: center">
           <img style="width: 20px;height: 20px;margin-right: 5px" src="../../assets/vue.svg">
           <text style="color: white">医疗诊断系统</text>
         </div>
-        <el-menu-item  >
+        <el-menu-item  index="/DoctorView/PatientsList">
           <template #title>
             <el-icon><icon-menu /></el-icon>
             <span>病人列表</span>
@@ -36,7 +38,7 @@ import {
           </template>
         </el-menu-item>
 
-        <el-menu-item >
+        <el-menu-item index="/DoctorView/Ai">
           <el-icon><document /></el-icon>
           <span>Ai诊断</span>
         </el-menu-item>
@@ -51,19 +53,19 @@ import {
 
 <style scoped>
 .tac{
-  min-height: 100vh;
+  height: 100vh;
   margin-right: 10px;
-  width: 200px;
+
 }
 .tac .col{
-  min-height: 100vh;
+  height: 100vh;
   color: white;
-
+  width: 200px;
 }
 .tac .col .el-menu-vertical-demo{
   min-height: 100vh;
   width: 100%;
-  background-color: #545c64;
+  background-color: #21B3B9;
   color: white;
 }
 </style>
