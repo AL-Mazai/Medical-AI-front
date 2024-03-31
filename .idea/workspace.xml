@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47fca7cf-bbd8-41d6-af19-6a017a4d273f" name="更改" comment="增加路由文件 创建医生视角">
-      <change afterPath="$PROJECT_DIR$/src/components/hjd/DoctorHeader.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/hjd/PatientsList.vue" afterDir="false" />
+    <list default="true" id="47fca7cf-bbd8-41d6-af19-6a017a4d273f" name="更改" comment="调整tab header 创建病人列表">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Ai.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Ai.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hjd/DoctorTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hjd/DoctorTab.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/hjd/DoctorView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/hjd/DoctorView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hjd/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hjd/PatientsList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +88,8 @@
       <workItem from="1711712460557" duration="2332000" />
       <workItem from="1711715914692" duration="155000" />
       <workItem from="1711716784990" duration="5546000" />
-      <workItem from="1711804375937" duration="4597000" />
+      <workItem from="1711804375937" duration="4891000" />
+      <workItem from="1711887216437" duration="5013000" />
     </task>
     <task id="LOCAL-00001" summary="初始化">
       <option name="closed" value="true" />
@@ -120,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711722462012</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="调整tab header 创建病人列表">
+      <option name="closed" value="true" />
+      <created>1711810298366</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711810298366</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +144,7 @@
     <MESSAGE value="初始化" />
     <MESSAGE value="vue2改vue3" />
     <MESSAGE value="增加路由文件 创建医生视角" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加路由文件 创建医生视角" />
+    <MESSAGE value="调整tab header 创建病人列表" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整tab header 创建病人列表" />
   </component>
 </project>
