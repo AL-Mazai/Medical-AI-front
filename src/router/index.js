@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DoctorView from "../views/hjd/DoctorView.vue";
 import Ai from "../components/Ai.vue";
 import PatientsList from "../components/hjd/PatientsList.vue";
-
+import PatientView from "../views/ljk/PatientView.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -37,6 +37,9 @@ const router = createRouter({
                     meta: { title: '病人列表' }
                 }
             ]
+        },{
+            path:'/Patient',
+            component:PatientView,
         }
     ]
 })
