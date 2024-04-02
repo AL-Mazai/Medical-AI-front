@@ -1,10 +1,16 @@
 <script setup>
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
 import {useRouter} from "vue-router";
 
 const router=useRouter();
 // const routeName = ref(router.currentRoute.value.name);
+
+const user=JSON.parse(sessionStorage.getItem("user"))
 const routeName = computed(()=>{return router.currentRoute.value.meta.title})
+
+// onMounted(()=>{
+//   console.log(user[0])
+// })
 </script>
 
 <template>
@@ -12,7 +18,7 @@ const routeName = computed(()=>{return router.currentRoute.value.meta.title})
     <span class="text">{{ routeName }}</span>
     <el-dropdown class="el-drop" >
       <span class="el-dropdown-link">
-       <el-icon class="el-icon--right"><arrow-down /></el-icon>
+        {{ user[0].username }}<el-icon class="el-icon--right"><arrow-down /></el-icon>
       </span>
       <template #dropdown>
         <el-dropdown-menu>

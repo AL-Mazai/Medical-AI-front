@@ -4,12 +4,14 @@ import DoctorView from "../views/hjd/DoctorView.vue";
 import Ai from "../components/Ai.vue";
 import PatientsList from "../components/hjd/PatientsList.vue";
 import PatientView from "../views/ljk/PatientView.vue";
+import DiagnosisList from "../components/hjd/DiagnosisList.vue";
+import Login from "../views/hjd/Login.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
             path:'/',
-            redirect:'/DoctorView'
+            redirect:'/Login'
         },
         // {
         //     path: '/Ai',
@@ -17,6 +19,13 @@ const router = createRouter({
         //     meta: { title: '肿瘤辅助诊断系统' }
         //
         // },
+        {
+          path:'/login',
+          component:Login,
+          meta:{
+              title:"登陆界面"
+}
+        },
         {
             path:'/DoctorView',
             component:DoctorView,
@@ -35,6 +44,11 @@ const router = createRouter({
                     path:'PatientsList',
                     component:PatientsList,
                     meta: { title: '病人列表' }
+                },
+                {
+                    path:'DiagnosisList',
+                    component:DiagnosisList,
+                    meta:{title: '诊断列表'}
                 }
             ]
         },{

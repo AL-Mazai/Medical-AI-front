@@ -31,7 +31,7 @@ import {
             <span>病人列表</span>
           </template>
         </el-menu-item>
-        <el-menu-item >
+        <el-menu-item index="/DoctorView/DiagnosisList">
           <template #title>
             <el-icon><List /></el-icon>
             <span>诊断列表</span>
