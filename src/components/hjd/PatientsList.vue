@@ -9,7 +9,7 @@ let currentPage=ref(1);
 let pageSize=ref(10);
 let total=ref(0)
 let input=ref("");
-
+const user=JSON.parse(sessionStorage.getItem("user"))
 onMounted(()=>{
 
   getPatientsList();
@@ -29,7 +29,8 @@ async function getPatientsList(){
     params:{
       page:currentPage.value,
       page_size:pageSize.value,
-      keyword:input.value
+      keyword:input.value,
+      doctorId:user[0].doctor_id
     }
   }).then((response)=>{
       console.log(response.data)

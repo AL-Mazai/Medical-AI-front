@@ -6,6 +6,7 @@ import PatientsList from "../components/hjd/PatientsList.vue";
 import PatientView from "../views/ljk/PatientView.vue";
 import DiagnosisList from "../components/hjd/DiagnosisList.vue";
 import Login from "../views/hjd/Login.vue";
+import DiagnosisDetail from "../components/hjd/DiagnosisDetail.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -49,9 +50,16 @@ const router = createRouter({
                     path:'DiagnosisList',
                     component:DiagnosisList,
                     meta:{title: '诊断列表'}
+                },
+                {
+                    name:"",
+                    path:'DiagnosisDetail',
+                    component:DiagnosisDetail,
+                    meta:{title: '诊断详情'}
                 }
             ]
-        },{
+        },
+        {
             path:'/Patient',
             component:PatientView,
         }

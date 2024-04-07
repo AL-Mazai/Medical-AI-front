@@ -2,6 +2,8 @@
 import {onMounted, ref} from "vue";
 import axios from "axios";
 import {Search} from "@element-plus/icons-vue";
+import { useRouter } from 'vue-router';
+import {ElLoading} from "element-plus";
 
 let diagnosisList=ref([])
 let loading=ref()
@@ -9,6 +11,8 @@ let currentPage=ref(1);
 let pageSize=ref(10);
 let total=ref(0)
 // let input=ref("");
+const router=useRouter()
+
 const user=JSON.parse(sessionStorage.getItem("user"))
 
 onMounted(()=>{
@@ -41,10 +45,35 @@ async function getDiagnosisList(){
 
 }
 
-function clear(){
-  input.value='';
-  getDiagnosisList()
+// function clear(){
+//   input.value='';
+//   getDiagnosisList()
+// }
+
+async function deleteDiagnosisDetail(id){
+  console.log("delete",id)
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Deleting',
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
+  // setTimeout(() => {
+  //   loading.close()
+  // }, 2000)
+  await axios({
+    method:"PUT",
+    url:"/deleteDiagnosisDetail",
+    params:{
+      diagnosisId:id
+    }
+  }).then((response)=>{
+    console.log(response.data)
+    getDiagnosisList()
+    loading.close()
+  })
+
 }
+
 
 function handleSizeChange(number){
   // console.log(number)
@@ -59,6 +88,22 @@ function handleCurrentChange(number){
   currentPage.value=number
   getDiagnosisList()
 }
+function gotoDiagnosisDetail(id){
+  console.log(id)
+  // await axios({
+  //   method:"GET",
+  //   url:"/getDiagnosisDetail",
+  //   params:{
+  //     diagnosisId:id
+  //   }
+  // }).then((response)=>{
+  //   console.log(response.data)
+  //
+  // })
+  router.push({ path: '/DoctorView/DiagnosisDetail', query: { diagnosisId: id } });
+
+}
+
 
 </script>
 
@@ -79,12 +124,22 @@ function handleCurrentChange(number){
     <el-table-column prop="gender" label="性别" width="90" />
     <el-table-column prop="diagnose_result" label="诊断结果" />
     <el-table-column prop="phone_number" label="操作" >
-      <el-button type="success">
-        <el-icon style="margin-right: 5px"><View /></el-icon> 查看
+      <template v-slot="scope">
+      <el-button type="success" @click="gotoDiagnosisDetail(scope.row.diagnose_record_id)">
+        <el-icon style="margin-right: 5px" ><View /></el-icon> 查看
       </el-button>
-      <el-button type="danger" >
-        <el-icon style="margin-right: 5px"><Delete /></el-icon> 删除
-      </el-button>
+        <el-popconfirm title="Are you sure to delete this?" @confirm="deleteDiagnosisDetail(scope.row.diagnose_record_id)">
+          <template #reference>
+            <el-button type="danger" >
+              <el-icon style="margin-right: 5px"><Delete /></el-icon> 删除
+            </el-button>
+          </template>
+        </el-popconfirm>
+
+<!--      <el-button type="danger" @click="deleteDiagnosisDetail(scope.row.diagnose_record_id)">-->
+<!--        <el-icon style="margin-right: 5px"><Delete /></el-icon> 删除-->
+<!--      </el-button>-->
+      </template>
     </el-table-column>
   </el-table>
   <div style="display: flex;justify-content: center;margin-top: 10px">
