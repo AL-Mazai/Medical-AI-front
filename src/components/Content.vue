@@ -3,7 +3,7 @@
 
     <el-dialog
         title="AI预测中"
-        v-model:visible="dialogTableVisible"
+        v-model="dialogTableVisible"
         :show-close="false"
         :close-on-press-escape="false"
         :append-to-body="true"
@@ -16,6 +16,7 @@
         <span class="dialog-footer">请耐心等待，约一分钟......</span>
       </template>
     </el-dialog>
+
     <div id="aside">
 
       <!-- 步骤条：下载 上传 -->
@@ -503,7 +504,7 @@ export default {
         headers: { 'Content-Type': 'multipart/form-data' },
       } //添加请求头
       axios
-        .post(this.server_url + '/upload', param, config)
+        .post('/upload', param, config)
         .then((response) => {
           console.log(response)
           this.percentage = 100

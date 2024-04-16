@@ -188,7 +188,7 @@ async function save(){
 
 </template>
 
-<style lang="scss">
+<style scoped lang="scss" >
 
 .box-card .el-card__header {
   background-color: #409EFF;
