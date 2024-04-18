@@ -22,7 +22,7 @@ import {
 
       >
         <div style="padding:  20px ;display: flex;justify-content: center;align-items: center">
-          <img style="width: 20px;height: 20px;margin-right: 5px" src="../../assets/vue.svg">
+          <img style="width: 20px;height: 20px;margin-right: 5px" src="../../assets/medical.png">
           <text style="color: white">医疗诊断系统</text>
         </div>
         <el-menu-item  index="/DoctorView/PatientsList">
@@ -65,7 +65,7 @@ import {
 .tac .col .el-menu-vertical-demo{
   min-height: 100vh;
   width: 100%;
-  background-color: #21B3B9;
+  background-color:#409EFF;
   color: white;
 }
 </style>

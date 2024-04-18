@@ -2,14 +2,14 @@
   <div id="Header">
     <!-- 免费咨询 -->
     <div class="top-left-edition">
-      <span style="color: #21b3b9; font-weight: bold">
-        <el-icon style="font-size: 23px"><el-icon-phone-outline /></el-icon
-        >免费咨询：010-56732656
-      </span>
-      <span>
-        <el-icon style="font-size: 23px"><el-icon-time /></el-icon
-        >工作时间：9:00-18:00
-      </span>
+<!--      <span style="color: #21b3b9; font-weight: bold">-->
+<!--        <el-icon style="font-size: 23px"><el-icon-phone-outline /></el-icon-->
+<!--        >免费咨询：010-56732656-->
+<!--      </span>-->
+<!--      <span>-->
+<!--        <el-icon style="font-size: 23px"><el-icon-time /></el-icon-->
+<!--        >工作时间：9:00-18:00-->
+<!--      </span>-->
     </div>
     <!-- CT图像处理字（可删除放图片） -->
     <div id="word">
@@ -84,7 +84,7 @@ export default {
   line-height: 3.2em;
 }
 h1 {
-  color: #21b3b9;
+  color: #409EFF;
   letter-spacing: 30px;
   font-size: 2.3em;
 }

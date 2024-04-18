@@ -844,7 +844,6 @@ export default {
 </style>
 
 <style scoped>
-@import '../theme/index.css';
 * {
   box-sizing: border-box;
   margin: 0;
@@ -926,7 +925,7 @@ export default {
   height: 30px;
   width: 275px;
   text-align: center;
-  background-color: #21b3b9;
+  background-color:#409EFF;
   line-height: 30px;
 }
 
@@ -1076,7 +1075,7 @@ div {
 .steps {
   font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica,
     'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
-  color: #21b3b9;
+  color: #409EFF;
   text-align: center;
   margin: 15px auto;
   font-size: 20px;

@@ -7,6 +7,12 @@ import {ElLoading} from "element-plus";
 const router = useRouter(); // 获取当前路由信息
 const diagnosisId=ref()
 const diagnosisDetail=ref({})
+const uploadInput=ref()
+
+const url_1=ref('')
+
+const url_2=ref('')
+
 let result=ref("")
 let description=ref("")
 
@@ -17,6 +23,9 @@ onMounted(()=>{
   // console.log(router.currentRoute.value.query.diagnosisId);
   diagnosisId.value = router.currentRoute.value.query.diagnosisId;
   getDiagnosisDetail(diagnosisId.value)
+  // url_1.value=diagnosisDetail.value.original_image_link
+  // url_2.value=diagnosisDetail.value.mark_image_link
+
 })
 
 async function getDiagnosisDetail(id){
@@ -38,32 +47,70 @@ async function getDiagnosisDetail(id){
   }).then((response)=>{
     console.log(response.data)
     diagnosisDetail.value=response.data[0]
+    url_1.value=diagnosisDetail.value.original_image_link
+    url_2.value=diagnosisDetail.value.mark_image_link
     loading.close()
   })
 }
 
 async function save(){
-  console.log(diagnosisDetail.value.diagnose_result,diagnosisDetail.value.illness_description)
+  console.log(diagnosisId.value,diagnosisDetail.value.diagnose_result,diagnosisDetail.value.illness_description)
   const loading = ElLoading.service({
     lock: true,
     text: 'Saving',
     background: 'rgba(0, 0, 0, 0.7)',
   })
+  let formData = new FormData();
+
+// 添加数据到 FormData 对象
+  formData.append('diagnosisId', diagnosisId.value);
+  formData.append('diagnose_result', diagnosisDetail.value.diagnose_result);
+  formData.append('illness_description', diagnosisDetail.value.illness_description);
+  formData.append('treatment_plan', diagnosisDetail.value.treatment_plan);
+  formData.append('original_image_link', url_1.value);
+  formData.append('mark_image_link', url_2.value);
   await axios({
-    url:'/updateDiagnosisDetail',
-    method:"PUT",
-    params:{
-      diagnosisId:diagnosisId.value,
-      diagnose_result:diagnosisDetail.value.diagnose_result,
-      illness_description:diagnosisDetail.value.illness_description,
-      treatment_plan:diagnosisDetail.value.treatment_plan,
-    }
+    url: '/updateDiagnosisDetail',
+    method: 'POST',
+    data: formData
   }).then((response)=>{
     console.log(response.data)
     loading.close()
 
   })
 }
+
+const upload= () => {
+  const input = uploadInput.value;
+  input.click();
+};
+const true_upload = (event) => {
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Uploading',
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
+  const file = event.target.files[0];
+  // if (!file) return;
+  console.log(file)
+  let param = new FormData() //创建form对象
+  param.append('file', file, file.name) //通过append向form对象添加数据
+  // console.log(param.get("file")); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+  // const timer = setInterval(() => {
+  //   this.myFunc()
+  // }, 30);
+  let config = {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  } //添加请求头
+  axios.post('/upload', param, config)
+      .then((response) => {
+        console.log(response)
+        url_1.value=response.data.image_base64
+        url_2.value=response.data.draw_base64
+        loading.close()
+      })
+};
+
 </script>
 
 <template>
@@ -150,11 +197,17 @@ async function save(){
     <el-col :span="12">
         <el-card>
           <template #header>
-            原始图片:
+            <div style="display: flex; justify-content: space-between; align-items: center;height: 30px">
+              原始图片:
+              <el-button type="primary" @click="upload">
+                上传dcm文件
+                <input ref="uploadInput" name="file" type="file" style="display: none" @change="true_upload" />
+              </el-button>
+            </div>
           </template>
           <div>
-
-              <img src="/src/assets/img.png">
+            <span v-if="url_1==''">暂未上传图片</span>
+            <img v-else :src="url_1"/>
 
           </div>
 
@@ -168,11 +221,15 @@ async function save(){
     <el-col :span="12">
       <el-card>
         <template #header>
-          标记图片:
+          <div style="display: flex; justify-content: space-between; align-items: center;height: 30px">
+            标记图片:
+<!--            <el-button type="primary" @click="save">预测</el-button>-->
+          </div>
         </template>
         <div>
-
-            <img src="/src/assets/img.png">
+          <span v-if="url_2==''">暂未上传图片</span>
+          <img v-else :src="url_2">
+<!--            <img src="/src/assets/img.png">-->
 
         </div>
 

@@ -70,7 +70,7 @@ function handleCurrentChange(number){
         placeholder="搜索病人姓名"
         :prefix-icon="Search"
     />
-    <el-button color="#21B3B9" style="color:white;" @click="getPatientsList">搜索</el-button>
+    <el-button type="primary" style="color:white;" @click="getPatientsList">搜索</el-button>
     <el-button type="danger" @click="clear">清除</el-button>
   </div>
     <el-table :data="patientsList" v-loading="loading" style="width: 100%" border stripe>

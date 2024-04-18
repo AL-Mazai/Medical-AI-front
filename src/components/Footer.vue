@@ -25,7 +25,7 @@ export default {
   margin-top: 140px;
 }
 p {
-  color: #21b3b9;
+  color: #409EFF;
   text-align: center;
   margin: 30px auto;
   font-size: 1.1em;
