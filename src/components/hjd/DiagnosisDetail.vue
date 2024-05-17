@@ -4,6 +4,7 @@ import axios from "axios";
 import {onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
 import {ElLoading} from "element-plus";
+import Ai from "../Ai.vue";
 const router = useRouter(); // 获取当前路由信息
 const diagnosisId=ref()
 const diagnosisDetail=ref({})
@@ -15,7 +16,7 @@ const url_2=ref('')
 
 let result=ref("")
 let description=ref("")
-
+let AiContent=ref("")
 
 // let loading=ref(true)
 
@@ -102,7 +103,7 @@ const true_upload = (event) => {
   let config = {
     headers: { 'Content-Type': 'multipart/form-data' },
   } //添加请求头
-  axios.post('/upload', param, config)
+  axios.post('/image', param, config)
       .then((response) => {
         console.log(response)
         url_1.value=response.data.image_base64
@@ -110,7 +111,30 @@ const true_upload = (event) => {
         loading.close()
       })
 };
+async function generate() {
+  let formData = new FormData();
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Generating',
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
+// 添加数据到 FormData 对象
+  formData.append('diagnose_result', diagnosisDetail.value.diagnose_result);
+  formData.append('illness_description', diagnosisDetail.value.illness_description);
+  formData.append('treatment_plan', diagnosisDetail.value.treatment_plan);
+  // formData.append('original_image_link', url_1.value);
+  // formData.append('mark_image_link', url_2.value);
+  await axios({
+    url: '/AIGenerate',
+    method: 'POST',
+    data: formData
+  }).then((response) => {
+    console.log(response.data)
+    AiContent.value=response.data
+    loading.close()
 
+  })
+}
 </script>
 
 <template>
@@ -190,7 +214,23 @@ const true_upload = (event) => {
       </el-card>
     </el-col>
   </el-row>
+  <el-row>
+    <el-col :span="24">
+      <el-card>
+        <template #header>
+          <div style="display: flex; justify-content: space-between; align-items: center;height: 30px">
+            AI诊断文档生成:
+            <el-button type="primary" @click="generate">
+              生成
+            </el-button>
+          </div>
+        </template>
+        <el-text>{{AiContent}}</el-text>
 
+      </el-card>
+
+    </el-col>
+  </el-row>
   <el-row>
 
 
@@ -200,14 +240,14 @@ const true_upload = (event) => {
             <div style="display: flex; justify-content: space-between; align-items: center;height: 30px">
               原始图片:
               <el-button type="primary" @click="upload">
-                上传dcm文件
+                上传文件
                 <input ref="uploadInput" name="file" type="file" style="display: none" @change="true_upload" />
               </el-button>
             </div>
           </template>
           <div>
             <span v-if="url_1==''">暂未上传图片</span>
-            <img v-else :src="url_1"/>
+            <img style="width: 100%" v-else :src="url_1"/>
 
           </div>
 
@@ -228,7 +268,7 @@ const true_upload = (event) => {
         </template>
         <div>
           <span v-if="url_2==''">暂未上传图片</span>
-          <img v-else :src="url_2">
+          <img style="width: 100%" v-else :src="url_2">
 <!--            <img src="/src/assets/img.png">-->
 
         </div>

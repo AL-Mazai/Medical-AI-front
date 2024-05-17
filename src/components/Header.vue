@@ -72,12 +72,15 @@ export default {
 
 <style scoped>
 #Header {
-  padding: 30px 110px 0 150px;
+  padding: 30px 110px 0 110px;
   width: 90%;
-  margin: 10px auto;
+  margin: 0 auto;
 }
 #word {
-  margin-left: 45%;
+  //margin-left: 45%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
   margin-top: -35px;
   margin-bottom: 37px;
   height: 60px;

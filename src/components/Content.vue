@@ -82,11 +82,34 @@
           style="
             border-radius: 8px;
             width: 800px;
-            height: 360px;
+            height: 460px;
             margin-bottom: -30px;
           "
         >
-          <div class="demo-image__preview1">
+          <template #header>
+            <div class="clearfix">
+              <span>检测区域</span>
+              <el-button
+                style="margin-left: 35px"
+                v-show="!showbutton"
+                type="primary"
+                :icon="ElIconUpload"
+                class="download_bt"
+                v-on:click="true_upload2"
+              >
+                重新选择图像
+                <input
+                  ref="upload2"
+                  style="display: none"
+                  name="file"
+                  type="file"
+                  @change="update"
+                />
+              </el-button>
+            </div>
+          </template>
+
+            <div class="demo-image__preview1">
             <div
               v-loading="loading"
               element-loading-text="上传图片中"
@@ -98,6 +121,7 @@
                   :preview-src-list="srcList"
                   style="border-radius: 3px 3px 0 0"
               >
+<!--                <template #placeholder> 1</template>-->
                 <template #error>
                   <div class="error">
 
@@ -109,7 +133,7 @@
                           @click="true_upload"
                       >
 
-                        上传dcm文件
+                        上传文件
                         <input
                             ref="upload"
                             style="display: none"
@@ -126,7 +150,7 @@
             </div>
             <!-- 原CT图文字 -->
             <div class="img_info_1" style="border-radius: 0 0 5px 5px">
-              <span style="color: white; letter-spacing: 6px">原CT图像</span>
+              <span style="color: white; letter-spacing: 6px">原图像</span>
             </div>
           </div>
           <!-- 标出肿瘤的CT图像 -->
@@ -154,7 +178,7 @@
             <!-- 标出肿瘤的CT图像文字 -->
             <div class="img_info_1" style="border-radius: 0 0 5px 5px">
               <span style="color: white; letter-spacing: 4px"
-                >标出肿瘤的CT图像</span
+                >标出肿瘤的图像</span
               >
             </div>
           </div>
@@ -164,146 +188,146 @@
       <!-- 图像特征部分 -->
       <div id="info_patient">
         <!-- 卡片放置表格 -->
-        <el-card style="border-radius: 8px">
-          <template #header>
-            <div class="clearfix">
-              <span>肿瘤区域特征值</span>
-              <el-button
-                style="margin-left: 35px"
-                v-show="!showbutton"
-                type="primary"
-                :icon="ElIconUpload"
-                class="download_bt"
-                v-on:click="true_upload2"
-              >
-                重新选择图像
-                <input
-                  ref="upload2"
-                  style="display: none"
-                  name="file"
-                  type="file"
-                  @change="update"
-                />
-              </el-button>
-            </div>
-          </template>
+<!--        <el-card style="border-radius: 8px;width: 700px">-->
+<!--          <template #header>-->
+<!--            <div class="clearfix">-->
+<!--              <span>肿瘤区域特征值</span>-->
+<!--              <el-button-->
+<!--                style="margin-left: 35px"-->
+<!--                v-show="!showbutton"-->
+<!--                type="primary"-->
+<!--                :icon="ElIconUpload"-->
+<!--                class="download_bt"-->
+<!--                v-on:click="true_upload2"-->
+<!--              >-->
+<!--                重新选择图像-->
+<!--                <input-->
+<!--                  ref="upload2"-->
+<!--                  style="display: none"-->
+<!--                  name="file"-->
+<!--                  type="file"-->
+<!--                  @change="update"-->
+<!--                />-->
+<!--              </el-button>-->
+<!--            </div>-->
+<!--          </template>-->
 
-          <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="肿瘤区域特征值" name="first">
-              <!-- 表格存放特征值 -->
-              <el-table
-                :data="feature_list"
-                height="390"
-                border
-                style="width: 750px; text-align: center"
-                v-loading="loading"
-                element-loading-text="数据正在处理中，请耐心等待"
-                element-loading-spinner="el-icon-loading"
-                lazy
-              >
-                <el-table-column label="Feature" width="250px">
-                  <template #default="scope">
-                    <span>{{ scope.row[2] }}</span>
-                  </template>
-                </el-table-column>
-                <!-- 特征名 -->
-                <el-table-column label="特征名" width="250px">
-                  <template #default="scope">
-                    <span>{{ scope.row[0] }}</span>
-                  </template>
-                </el-table-column>
+<!--          <el-tabs v-model="activeName" @tab-click="handleClick">-->
+<!--            <el-tab-pane label="肿瘤区域特征值" name="first">-->
+<!--              &lt;!&ndash; 表格存放特征值 &ndash;&gt;-->
+<!--              <el-table-->
+<!--                :data="feature_list"-->
+<!--                height="390"-->
+<!--                border-->
+<!--                style="width: 750px; text-align: center"-->
+<!--                v-loading="loading"-->
+<!--                element-loading-text="数据正在处理中，请耐心等待"-->
+<!--                element-loading-spinner="el-icon-loading"-->
+<!--                lazy-->
+<!--              >-->
+<!--                <el-table-column label="Feature" width="250px">-->
+<!--                  <template #default="scope">-->
+<!--                    <span>{{ scope.row[2] }}</span>-->
+<!--                  </template>-->
+<!--                </el-table-column>-->
+<!--                &lt;!&ndash; 特征名 &ndash;&gt;-->
+<!--                <el-table-column label="特征名" width="250px">-->
+<!--                  <template #default="scope">-->
+<!--                    <span>{{ scope.row[0] }}</span>-->
+<!--                  </template>-->
+<!--                </el-table-column>-->
 
-                <!-- 特征值 -->
-                <el-table-column label="特征值" width="250px">
-                  <template #default="scope">
-                    <span>{{ scope.row[1] }}</span>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </el-tab-pane>
-            <el-tab-pane
-              label="面积对比"
-              name="second"
-              style="width: 750px; height: 390px"
-            >
-              <div id="areaCompare">
-                <el-table
-                  :data="feature_list"
-                  height="390"
-                  border
-                  style="width: 750px; text-align: center"
-                  v-loading="loading"
-                  element-loading-text="数据正在处理中，请耐心等待"
-                  element-loading-spinner="el-icon-loading"
-                >
-                  <el-table-column label="Feature" width="250px">
-                    <template #default="scope">
-                      <span>{{ scope.row[2] }}</span>
-                    </template>
-                  </el-table-column>
-                  <!-- 特征名 -->
-                  <el-table-column label="特征名" width="250px">
-                    <template #default="scope">
-                      <span>{{ scope.row[0] }}</span>
-                    </template>
-                  </el-table-column>
+<!--                &lt;!&ndash; 特征值 &ndash;&gt;-->
+<!--                <el-table-column label="特征值" width="250px">-->
+<!--                  <template #default="scope">-->
+<!--                    <span>{{ scope.row[1] }}</span>-->
+<!--                  </template>-->
+<!--                </el-table-column>-->
+<!--              </el-table>-->
+<!--            </el-tab-pane>-->
+<!--            <el-tab-pane-->
+<!--              label="面积对比"-->
+<!--              name="second"-->
+<!--              style="width: 750px; height: 390px"-->
+<!--            >-->
+<!--              <div id="areaCompare">-->
+<!--                <el-table-->
+<!--                  :data="feature_list"-->
+<!--                  height="390"-->
+<!--                  border-->
+<!--                  style="width: 750px; text-align: center"-->
+<!--                  v-loading="loading"-->
+<!--                  element-loading-text="数据正在处理中，请耐心等待"-->
+<!--                  element-loading-spinner="el-icon-loading"-->
+<!--                >-->
+<!--                  <el-table-column label="Feature" width="250px">-->
+<!--                    <template #default="scope">-->
+<!--                      <span>{{ scope.row[2] }}</span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                  &lt;!&ndash; 特征名 &ndash;&gt;-->
+<!--                  <el-table-column label="特征名" width="250px">-->
+<!--                    <template #default="scope">-->
+<!--                      <span>{{ scope.row[0] }}</span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
 
-                  <!-- 特征值 -->
-                  <el-table-column label="特征值" width="250px">
-                    <template #default="scope">
-                      <span>{{ scope.row[1] }}</span>
-                    </template>
-                  </el-table-column>
-                </el-table>
-              </div>
-              <div
-                id="area"
-                style="width: 750px; height: 400px; margin-bottom: 20px"
-              ></div>
-            </el-tab-pane>
-            <el-tab-pane
-              label="周长对比"
-              name="third"
-              style="width: 750px; height: 390px"
-            >
-              <div id="perimeterCompare">
-                <el-table
-                  :data="feature_list"
-                  height="390"
-                  border
-                  style="width: 750px; text-align: center"
-                  v-loading="loading"
-                  element-loading-text="数据正在处理中，请耐心等待"
-                  element-loading-spinner="el-icon-loading"
-                >
-                  <el-table-column label="Feature" width="250px">
-                    <template #default="scope">
-                      <span>{{ scope.row[2] }}</span>
-                    </template>
-                  </el-table-column>
-                  <!-- 特征名 -->
-                  <el-table-column label="特征名" width="250px">
-                    <template #default="scope">
-                      <span>{{ scope.row[0] }}</span>
-                    </template>
-                  </el-table-column>
+<!--                  &lt;!&ndash; 特征值 &ndash;&gt;-->
+<!--                  <el-table-column label="特征值" width="250px">-->
+<!--                    <template #default="scope">-->
+<!--                      <span>{{ scope.row[1] }}</span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                </el-table>-->
+<!--              </div>-->
+<!--              <div-->
+<!--                id="area"-->
+<!--                style="width: 750px; height: 400px; margin-bottom: 20px"-->
+<!--              ></div>-->
+<!--            </el-tab-pane>-->
+<!--            <el-tab-pane-->
+<!--              label="周长对比"-->
+<!--              name="third"-->
+<!--              style="width: 750px; height: 390px"-->
+<!--            >-->
+<!--              <div id="perimeterCompare">-->
+<!--                <el-table-->
+<!--                  :data="feature_list"-->
+<!--                  height="390"-->
+<!--                  border-->
+<!--                  style="width: 750px; text-align: center"-->
+<!--                  v-loading="loading"-->
+<!--                  element-loading-text="数据正在处理中，请耐心等待"-->
+<!--                  element-loading-spinner="el-icon-loading"-->
+<!--                >-->
+<!--                  <el-table-column label="Feature" width="250px">-->
+<!--                    <template #default="scope">-->
+<!--                      <span>{{ scope.row[2] }}</span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                  &lt;!&ndash; 特征名 &ndash;&gt;-->
+<!--                  <el-table-column label="特征名" width="250px">-->
+<!--                    <template #default="scope">-->
+<!--                      <span>{{ scope.row[0] }}</span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
 
-                  <!-- 特征值 -->
-                  <el-table-column label="特征值" width="250px">
-                    <template #default="scope">
-                      <span>{{ scope.row[1] }}</span>
-                    </template>
-                  </el-table-column>
-                </el-table>
-              </div>
+<!--                  &lt;!&ndash; 特征值 &ndash;&gt;-->
+<!--                  <el-table-column label="特征值" width="250px">-->
+<!--                    <template #default="scope">-->
+<!--                      <span>{{ scope.row[1] }}</span>-->
+<!--                    </template>-->
+<!--                  </el-table-column>-->
+<!--                </el-table>-->
+<!--              </div>-->
 
-              <div
-                id="perimeter"
-                style="width: 750px; height: 400px; margin-bottom: 20px"
-              ></div>
-            </el-tab-pane>
-          </el-tabs>
-        </el-card>
+<!--              <div-->
+<!--                id="perimeter"-->
+<!--                style="width: 750px; height: 400px; margin-bottom: 20px"-->
+<!--              ></div>-->
+<!--            </el-tab-pane>-->
+<!--          </el-tabs>-->
+<!--        </el-card>-->
       </div>
     </div>
   </div>
@@ -350,14 +374,14 @@ export default {
         opacity: 0,
       },
       dialogTableVisible: false,
-      patient: {
-        ID: '20190001',
-        姓名: '李明',
-        性别: '男',
-        年龄: '29',
-        电话: '13220986785',
-        部位: '直肠',
-      },
+      // patient: {
+      //   ID: '20190001',
+      //   姓名: '李明',
+      //   性别: '男',
+      //   年龄: '29',
+      //   电话: '13220986785',
+      //   部位: '直肠',
+      // },
       // ElIconDownload,
       // ElIconUpload,
     }
@@ -398,75 +422,75 @@ export default {
     // 点击切换
     handleClick(tab, event) {
       // console.log(event)
-      if (tab.name == 'second') {
-        this.drawChart()
-        const myChart_area = this.$echarts.init(document.getElementById('area'));
-        // myChart_area.clear();
-        myChart_area.setOption({
-          xAxis: {
-            type: 'category',
-            data: ['1', '2', '3', '4', '5', '6', '7', '8'],
-          },
-          yAxis: {
-            type: 'value',
-            name: '面积',
-          },
-          areaStyle: {},
-          legend: {
-            data: [''],
-          },
-          series: [
-            {
-              // 根据名字对应到相应的系列
-              name: '面积',
-              type: 'line',
-              data: [
-                1300,
-                1290,
-                1272,
-                1123.5,
-                1123,
-                1092,
-                1086,
-                this.area_picture_data,
-              ],
-            },
-          ],
-        })
-      } else if (tab.name == 'third') {
-        this.drawChart()
-        const myChart_perimeter = this.$echarts.init(
-            document.getElementById('perimeter')
-        );
-        myChart_perimeter.setOption({
-          xAxis: {
-            type: 'category',
-            data: ['1', '2', '3', '4', '5', '6', '7', '8'],
-          },
-          yAxis: {
-            type: 'value',
-            name: '周长',
-          },
-          areaStyle: {},
-          series: [
-            {
-              // 根据名字对应到相应的系列
-              name: '周长',
-              type: 'line',
-              data: [
-                250,
-                243,
-                227,
-                201,
-                197,
-                170,
-                159,
-                this.perimeter_picture_data,
-              ],
-            },
-          ],
-        })
-      }
+      // if (tab.name == 'second') {
+      //   this.drawChart()
+      //   // const myChart_area = this.$echarts.init(document.getElementById('area'));
+      //   // myChart_area.clear();
+      //   myChart_area.setOption({
+      //     xAxis: {
+      //       type: 'category',
+      //       data: ['1', '2', '3', '4', '5', '6', '7', '8'],
+      //     },
+      //     yAxis: {
+      //       type: 'value',
+      //       name: '面积',
+      //     },
+      //     areaStyle: {},
+      //     legend: {
+      //       data: [''],
+      //     },
+      //     series: [
+      //       {
+      //         // 根据名字对应到相应的系列
+      //         name: '面积',
+      //         type: 'line',
+      //         data: [
+      //           1300,
+      //           1290,
+      //           1272,
+      //           1123.5,
+      //           1123,
+      //           1092,
+      //           1086,
+      //           this.area_picture_data,
+      //         ],
+      //       },
+      //     ],
+      //   })
+      // } else if (tab.name == 'third') {
+      //   this.drawChart()
+      //   const myChart_perimeter = this.$echarts.init(
+      //       document.getElementById('perimeter')
+      //   );
+      //   myChart_perimeter.setOption({
+      //     xAxis: {
+      //       type: 'category',
+      //       data: ['1', '2', '3', '4', '5', '6', '7', '8'],
+      //     },
+      //     yAxis: {
+      //       type: 'value',
+      //       name: '周长',
+      //     },
+      //     areaStyle: {},
+      //     series: [
+      //       {
+      //         // 根据名字对应到相应的系列
+      //         name: '周长',
+      //         type: 'line',
+      //         data: [
+      //           250,
+      //           243,
+      //           227,
+      //           201,
+      //           197,
+      //           170,
+      //           159,
+      //           this.perimeter_picture_data,
+      //         ],
+      //       },
+      //     ],
+      //   })
+      // }
     },
     // 上传dcm文件
     update(e) {
@@ -479,14 +503,14 @@ export default {
       this.wait_return = ''
       this.wait_upload = ''
       this.feature_list = []
-      let myChart_area = this.$echarts.init(document.getElementById('area'))
-      myChart_area.setOption({
-        series: [
-          {
-            data: [''],
-          },
-        ],
-      })
+      // let myChart_area = this.$echarts.init(document.getElementById('area'))
+      // myChart_area.setOption({
+      //   series: [
+      //     {
+      //       data: [''],
+      //     },
+      //   ],
+      // })
       this.feat_list = []
       this.fullscreenLoading = true
       this.loading = true
@@ -504,7 +528,7 @@ export default {
         headers: { 'Content-Type': 'multipart/form-data' },
       } //添加请求头
       axios
-        .post('/upload', param, config)
+        .post('/image', param, config)
         .then((response) => {
           console.log(response)
           this.percentage = 100
@@ -516,12 +540,12 @@ export default {
           this.fullscreenLoading = false
           this.loading = false
 
-          this.feat_list = Object.keys(response.data.image_info)
+          // this.feat_list = Object.keys(response.data.image_info)
 
-          for (let i = 0; i < this.feat_list.length; i++) {
-            response.data.image_info[this.feat_list[i]][2] = this.feat_list[i]
-            this.feature_list.push(response.data.image_info[this.feat_list[i]])
-          }
+          // for (let i = 0; i < this.feat_list.length; i++) {
+          //   response.data.image_info[this.feat_list[i]][2] = this.feat_list[i]
+          //   this.feature_list.push(response.data.image_info[this.feat_list[i]])
+          // }
 
           this.feature_list.push(response.data.image_info)
           this.feature_list_1 = this.feature_list[0]
@@ -824,7 +848,7 @@ export default {
     },
   },
   mounted() {
-    this.drawChart()
+    // this.drawChart()
   },
 }
 </script>
@@ -890,7 +914,7 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
-  margin-right: 0px;
+  //margin-right: 0px;
   max-width: 1200px;
   /* background-color: RGB(239, 249, 251); */
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04); */
