@@ -42,7 +42,10 @@ import {
           <el-icon><document /></el-icon>
           <span>Ai诊断</span>
         </el-menu-item>
-
+        <el-menu-item index="/DoctorView/AiTalk">
+          <el-icon><document /></el-icon>
+          <span>Ai问诊</span>
+        </el-menu-item>
 
 
       </el-menu>

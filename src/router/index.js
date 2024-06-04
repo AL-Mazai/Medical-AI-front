@@ -7,6 +7,7 @@ import PatientView from "../views/ljk/PatientView.vue";
 import DiagnosisList from "../components/hjd/DiagnosisList.vue";
 import Login from "../views/hjd/Login.vue";
 import DiagnosisDetail from "../components/hjd/DiagnosisDetail.vue";
+import AiTalk from "../components/hjd/AiTalk.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -36,9 +37,15 @@ const router = createRouter({
             children:[
                 {
 
+                    path:'AiTalk',
+                    component:AiTalk,
+                    meta: { title: 'Ai问诊' }
+                },
+                {
+
                     path:'Ai',
                     component:Ai,
-                    meta: { title: '肿瘤辅助诊断系统' }
+                    meta: { title: '医学图像诊断系统' }
                 },
                 {
 

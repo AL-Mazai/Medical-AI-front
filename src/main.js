@@ -7,6 +7,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 // import '../src/assets/style.css'
 // import './theme/index.css'
+import "/src/assets/reset.css";
 import * as echarts from 'echarts';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
