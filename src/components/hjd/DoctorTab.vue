@@ -25,12 +25,12 @@ import {
           <img style="width: 20px;height: 20px;margin-right: 5px" src="../../assets/medical.png">
           <text style="color: white">医疗诊断系统</text>
         </div>
-        <el-menu-item  index="/DoctorView/PatientsList">
-          <template #title>
-            <el-icon><icon-menu /></el-icon>
-            <span>病人列表</span>
-          </template>
-        </el-menu-item>
+<!--        <el-menu-item  index="/DoctorView/PatientsList">-->
+<!--          <template #title>-->
+<!--            <el-icon><icon-menu /></el-icon>-->
+<!--            <span>病人列表</span>-->
+<!--          </template>-->
+<!--        </el-menu-item>-->
         <el-menu-item index="/DoctorView/DiagnosisList">
           <template #title>
             <el-icon><List /></el-icon>

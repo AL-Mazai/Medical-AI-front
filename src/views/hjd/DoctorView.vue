@@ -9,7 +9,7 @@ import DoctorHeader from "../../components/hjd/DoctorHeader.vue";
   <div class="container">
     <DoctorTab/>
     <div class="router-view-container">
-      <doctor-header class="fixed-header" />
+      <doctor-header />
       <div class="pos">
         <router-view/>
       </div>
@@ -40,7 +40,7 @@ import DoctorHeader from "../../components/hjd/DoctorHeader.vue";
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
 .pos{
-  padding-top: 70px; /* 预留固定头部的高度，具体高度根据实际情况调整 */
+
 }
 
 </style>
