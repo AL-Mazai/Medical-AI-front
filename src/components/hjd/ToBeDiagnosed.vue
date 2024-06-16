@@ -30,7 +30,7 @@ async function getDiagnosisList(){
   // })
   await axios({
     method:"GET",
-    url:"/getDiagnosis",
+    url:"/getTobeDiagnosed",
     params:{
       page:currentPage.value,
       page_size:pageSize.value,

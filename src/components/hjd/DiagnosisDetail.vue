@@ -30,6 +30,7 @@ onMounted(()=>{
   getAllDiseases()
   // url_1.value=diagnosisDetail.value.original_image_link
   // url_2.value=diagnosisDetail.value.mark_image_link
+  console.log(url_1.value,url_2.value)
 
 })
 function getAllDiseases(){
@@ -60,7 +61,7 @@ function getAllDiseases(){
       diagnosisId:id
     }
   }).then((response)=>{
-    console.log(response.data)
+    console.log(response.data,777)
     diagnosisDetail.value=response.data.records[0]
     url_1.value=diagnosisDetail.value.original_image_link
     url_2.value=diagnosisDetail.value.mark_image_link
@@ -386,7 +387,7 @@ function pastMedicalHistory(){
             </div>
           </template>
           <div>
-            <span v-if="url_1==''">暂未上传图片</span>
+            <span v-if="url_1==null">暂未上传图片</span>
             <img style="width: 100%" v-else :src="url_1"/>
 
           </div>
@@ -407,7 +408,7 @@ function pastMedicalHistory(){
           </div>
         </template>
         <div>
-          <span v-if="url_2==''">暂未上传图片</span>
+          <span v-if="url_2==null">暂未上传图片</span>
           <img style="width: 100%" v-else :src="url_2">
 <!--            <img src="/src/assets/img.png">-->
 

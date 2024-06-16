@@ -58,7 +58,7 @@ export default {
   name: 'Header',
   data() {
     return {
-      msg: '肿瘤辅助诊断系统',
+      msg: '图像辅助诊断系统',
       activeIndex: '1',
     }
   },

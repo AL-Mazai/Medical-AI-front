@@ -31,6 +31,12 @@ import {
 <!--            <span>病人列表</span>-->
 <!--          </template>-->
 <!--        </el-menu-item>-->
+        <el-menu-item index="/DoctorView/TobeDiagnosed">
+          <template #title>
+            <el-icon><List /></el-icon>
+            <span>待诊断</span>
+          </template>
+        </el-menu-item>
         <el-menu-item index="/DoctorView/DiagnosisList">
           <template #title>
             <el-icon><List /></el-icon>

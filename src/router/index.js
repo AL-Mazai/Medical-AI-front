@@ -8,6 +8,7 @@ import DiagnosisList from "../components/hjd/DiagnosisList.vue";
 import Login from "../views/hjd/Login.vue";
 import DiagnosisDetail from "../components/hjd/DiagnosisDetail.vue";
 import AiTalk from "../components/hjd/AiTalk.vue";
+import ToBeDiagnosed from "../components/hjd/ToBeDiagnosed.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -63,6 +64,11 @@ const router = createRouter({
                     path:'DiagnosisDetail',
                     component:DiagnosisDetail,
                     meta:{title: '诊断详情'}
+                },
+                {
+                    path:'TobeDiagnosed',
+                    component:ToBeDiagnosed,
+                    meta:{title: '待诊断'}
                 }
             ]
         },

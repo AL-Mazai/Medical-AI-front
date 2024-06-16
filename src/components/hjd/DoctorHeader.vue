@@ -11,6 +11,10 @@ const routeName = computed(()=>{return router.currentRoute.value.meta.title})
 // onMounted(()=>{
 //   console.log(user[0])
 // })
+function exit() {
+  sessionStorage.removeItem("user")
+  router.push("/login")
+}
 </script>
 
 <template>
@@ -22,7 +26,7 @@ const routeName = computed(()=>{return router.currentRoute.value.meta.title})
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item >退出</el-dropdown-item>
+          <el-dropdown-item @click="exit">退出</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
